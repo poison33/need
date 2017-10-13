@@ -1,0 +1,10 @@
+AdvancedNewFile
+AutoFileName
+Emmet
+Package Control
+Side Bar
+Super Calculator
+Tag
+Encoding Halper
+SFTP
+ColorPicker
