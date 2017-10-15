@@ -1,0 +1,30 @@
+--Äëÿ Sublime text--
+AdvancedNewFile
+AutoFileName
+Emmet
+Package Control
+Side Bar
+Super Calculator
+Tag
+Encoding Halper
+SFTP
+ColorPicker
+
+--Äëÿ Photoshop--
+GuideGuide
+CSS Hat
+
+--Äëÿ Gulp--
+npm i gulp-sass --save-dev
+npm i browser-sync --save-dev
+npm i --save-dev gulp-concat gulp-uglifyjs
+npm i gulp-cssnano gulp-rename --save-dev
+npm i del --save-dev
+npm i gulp-imagemin imagemin-pngquant --save-dev
+npm i gulp-cache --save-dev
+npm i --save-dev gulp-autoprefixer
+npm install --save-dev gulp-zip
+npm install gulp-csso --save-dev
+npm install gulp-email-builder --save-dev
+npm install gulp-clean --save-dev
+npm install gulp-iconfont --save-dev
