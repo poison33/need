@@ -9,6 +9,11 @@ Tag
 Encoding Halper
 SFTP
 ColorPicker
+CSS3
+GutterColor
+Colorcoder
+Trailing Spaces
+EasyMotion
 
 --Для Photoshop--
 GuideGuide
