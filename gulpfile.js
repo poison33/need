@@ -64,7 +64,7 @@ gulp.task('finish', function() {
 
 //сжатие картинок в папке image
 gulp.task('img', function() {
-    return gulp.src('app/image/*') // Берем все изображения из app/image
+    return gulp.src('app/image/**/*.*') // Берем все изображения из app/image
         .pipe(cache(imagemin({  // Сжимаем их с наилучшими настройками с учетом кеширования
             interlaced: true,
             progressive: true,
