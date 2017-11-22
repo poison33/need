@@ -54,7 +54,7 @@ gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('app/image/**/*.*', browserSync.reload);   // Наблюдение за изображениями в папке images
 });
 
-gulp.task('del', ['finish'], function() {
+gulp.task('dist', ['finish'], function() {
     return del.sync('dist'); // Удаляем папку dist перед сборкой
 });
 
