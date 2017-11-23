@@ -91,7 +91,7 @@ gulp.task('js', function() {
 gulp.task('scripts', function() {
     return gulp.src([ // Берем все необходимые библиотеки
         'bower_components/jquery/dist/jquery.min.js', // Берем jQuery
-        'bower_components/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
+        'bower_components\bootstrap4-dist\dist\js\bootstrap.min.js' // Берем Bootstrap4
         ])
         .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
         .pipe(uglify()) // Сжимаем JS файл
