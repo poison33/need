@@ -27,6 +27,21 @@ gulp.task('sass', function(){ // Создаем таск Sass
         .pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
 });
 
+//сжимаем css файлы в папке app/css
+gulp.task('css-min', function() {
+    return gulp.src('app/css/*.css') // Выбираем файл для минификации
+        .pipe(cssnano()) // Сжимаем
+        .pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
+});
+
+//сжимаем css файлы в папке app/css и добавляем суфикс
+gulp.task('css-min-s', function() {
+    return gulp.src('app/css/*.css') // Выбираем файл для минификации
+        .pipe(cssnano()) // Сжимаем
+        .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
+        .pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
+});
+
 //относится к перезагрузке страници
 gulp.task('browser-sync', function() { // Создаем таск browser-sync
     browserSync({ // Выполняем browserSync
@@ -44,6 +59,45 @@ gulp.task('css', function() {
         .pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
 });
 
+//сборка и сжатие файлов jQuery
+gulp.task('jQuery-min', function() {
+    return gulp.src([ // Берем все необходимые файлы
+        'app/js/*.js', // Берем jQuery файлы
+        ])
+        .pipe(uglify()) // Сжимаем JS файл
+        .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
+});
+
+//сборка и сжатие файлов jQuery и добавляем суффикс
+gulp.task('jQuery-min-s', function() {
+    return gulp.src([ // Берем все необходимые файлы
+        'app/js/*.js', // Берем jQuery файлы
+        ])
+        .pipe(uglify()) // Сжимаем JS файл
+        .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
+        .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
+});
+
+//создание библиотеки jQuery
+gulp.task('js', function() {
+    return gulp.src([ // Берем все необходимые файлы
+        'bower_components/jquery/dist/jquery.min.js' // Берем jQuery
+        ])
+        .pipe(uglify()) // Сжимаем JS файл
+        .pipe(gulp.dest('app/libs')); // Выгружаем в папку app/libs
+});
+
+//сборка и сжатие библиотек bower
+gulp.task('scripts', function() {
+    return gulp.src([ // Берем все необходимые библиотеки
+        'bower_components/jquery/dist/jquery.min.js', // Берем jQuery
+        'bower_components/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
+        ])
+        .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
+        .pipe(uglify()) // Сжимаем JS файл
+        .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
+});
+
 //перезагрузка страницы в браузере
 gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
@@ -54,14 +108,25 @@ gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('app/image/**/*.*', browserSync.reload);   // Наблюдение за изображениями в папке images
 });
 
-gulp.task('dist', ['finish'], function() {
+//удаляем папку dist
+gulp.task('dist', function() {
     return del.sync('dist'); // Удаляем папку dist перед сборкой
 });
 
+//удаляем папку app
+gulp.task('app', function() {
+    return del.sync('app'); // Удаляем папку app перед сборкой
+});
+
+//удаляем папку finish
 gulp.task('finish', function() {
     return del.sync('finish'); // Удаляем папку finish перед сборкой
 });
 
+//удаляем все папки проекта
+gulp.task('clean', ['finish', 'app'], function() {
+    return del.sync('dist'); // Удаляем папку dist перед сборкой
+});
 //сжатие картинок в папке image
 gulp.task('img', function() {
     return gulp.src('app/image/**/*.*') // Берем все изображения из app/image
@@ -81,18 +146,19 @@ gulp.task('prefix', function(){
 			.pipe(gulp.dest('app/css/'));
 });
 
-// Очистка файлов сайта
+/* Очистка файлов сайта
 'use strict';
 var path = {
     build: {},
     src: {},
     watch: {},
-    clean: 'app/**/*.*'
+    clean: 'app/css/*.*'
 };
 gulp.task('app', function() {
     return gulp.src(path.clean, {read: false})
         .pipe(clean());
 });
+*/
 
 //очистка кеша и архивирование
 gulp.task('end', ['zip'], function () {
@@ -100,7 +166,7 @@ gulp.task('end', ['zip'], function () {
 });
 
 //сборка на продакшен,(все готово)
-gulp.task('build', ['prefix', 'img'], function() {
+gulp.task('build', ['prefix', 'img', 'js'], function() {
 
     var buildCss = gulp.src('app/css/**/*') // Переносим CSS стили в продакшен
     .pipe(gulp.dest('dist/css'))
@@ -116,7 +182,6 @@ gulp.task('build', ['prefix', 'img'], function() {
 
     var buildHtml = gulp.src('app/*.html') // Переносим HTML в продакшен
     .pipe(gulp.dest('dist'));
-
 });
 
 gulp.task('default', ['watch']);
