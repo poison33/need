@@ -17,8 +17,8 @@ var gulp      = require('gulp'), // Подключаем Gulp
     zip = require('gulp-zip');//переменная архивирования проекта
     iconfont = require('gulp-iconfont');//переменная формирования шрифтов
     runTimestamp = Math.round(Date.now()/1000);
-    var gulp = require('gulp');
-	var htmlmin = require('gulp-htmlmin');
+	htmlmin = require('gulp-htmlmin');
+
 
 //конвертирование файла sass в css файл
 gulp.task('sass', function(){ // Создаем таск Sass
@@ -61,19 +61,19 @@ gulp.task('css', function() {
         .pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
 });
 
-//сборка и сжатие файлов jQuery
+//сжатие файла JS
 gulp.task('jQuery-min', function() {
-    return gulp.src([ // Берем все необходимые файлы
-        'app/js/*.js', // Берем jQuery файлы
+    return gulp.src([ 
+        'app/js/*.js', // Берем JS файл
         ])
         .pipe(uglify()) // Сжимаем JS файл
         .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
 });
 
-//сборка и сжатие файлов jQuery и добавляем суффикс
+//сжатие файла JS и добавляем суффикс
 gulp.task('jQuery-min-s', function() {
-    return gulp.src([ // Берем все необходимые файлы
-        'app/js/*.js', // Берем jQuery файлы
+    return gulp.src([ 
+        'app/js/*.js', // Берем JS файл
         ])
         .pipe(uglify()) // Сжимаем JS файл
         .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
