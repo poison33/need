@@ -10,11 +10,14 @@ SFTP
 ColorPicker
 CSS3
 GutterColor
-Colorcoder
 Trailing Spaces
 EasyMotion
 jQuery
 Autoprefixer
+Placeholders
+DocBlockr
+Color Highlighter
+ImageMagick
 
 --Äëÿ Photoshop--
 GuideGuide
@@ -36,3 +39,4 @@ npm install gulp-email-builder --save-dev
 npm install gulp-clean --save-dev
 npm install gulp-iconfont --save-dev
 npm install -g bower-update
+npm i gulp-htmlmin --save-dev

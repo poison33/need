@@ -17,6 +17,8 @@ var gulp      = require('gulp'), // Подключаем Gulp
     zip = require('gulp-zip');//переменная архивирования проекта
     iconfont = require('gulp-iconfont');//переменная формирования шрифтов
     runTimestamp = Math.round(Date.now()/1000);
+    var gulp = require('gulp');
+	var htmlmin = require('gulp-htmlmin');
 
 //конвертирование файла sass в css файл
 gulp.task('sass', function(){ // Создаем таск Sass
@@ -91,7 +93,7 @@ gulp.task('js', function() {
 gulp.task('scripts', function() {
     return gulp.src([ // Берем все необходимые библиотеки
         'bower_components/jquery/dist/jquery.min.js', // Берем jQuery
-        'bower_components\bootstrap4-dist\dist\js\bootstrap.min.js' // Берем Bootstrap4
+        'bower_components/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
         ])
         .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
         .pipe(uglify()) // Сжимаем JS файл
@@ -144,6 +146,21 @@ gulp.task('prefix', function(){
 			gulp.src('app/css/style.css')
 			.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
 			.pipe(gulp.dest('app/css/'));
+});
+
+//минификация html файлов
+gulp.task('html-min', function() {
+  return gulp.src('app/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('app'));
+});
+
+//минификация html файлов с добавлением суфикса
+gulp.task('html-min-s', function() {
+  return gulp.src('app/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
+    .pipe(gulp.dest('app'));
 });
 
 /* Очистка файлов сайта
