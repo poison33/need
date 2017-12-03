@@ -18,6 +18,7 @@ Placeholders
 DocBlockr
 Color Highlighter
 ImageMagick
+Terminal
 
 --Для Photoshop--
 GuideGuide
