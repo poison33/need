@@ -20,6 +20,7 @@ Color Highlighter
 ImageMagick
 Terminal
 Gist
+Git
 
 --Äëÿ Photoshop--
 GuideGuide
