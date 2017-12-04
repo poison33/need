@@ -1,4 +1,4 @@
---Äëÿ Sublime text--
+--Ã„Ã«Ã¿ Sublime text--
 AdvancedNewFile
 AutoFileName
 Emmet
@@ -19,12 +19,12 @@ DocBlockr
 Color Highlighter
 ImageMagick
 Terminal
+Gist
 
---Äëÿ Photoshop--
+--Ã„Ã«Ã¿ Photoshop--
 GuideGuide
-CSS Hat
 
---Äëÿ Gulp--
+--Ã„Ã«Ã¿ Gulp--
 npm i gulp --save-dev
 npm i gulp-sass --save-dev
 npm i browser-sync --save-dev
