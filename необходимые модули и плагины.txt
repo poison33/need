@@ -18,9 +18,10 @@ Placeholders
 DocBlockr
 Color Highlighter
 ImageMagick
-Terminal
+Stylus
 Gist
 Git
+Terminal
 
 --Äëÿ Photoshop--
 GuideGuide

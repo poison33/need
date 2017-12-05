@@ -18,7 +18,16 @@ var gulp      = require('gulp'), // Подключаем Gulp
     iconfont = require('gulp-iconfont');//переменная формирования шрифтов
     runTimestamp = Math.round(Date.now()/1000);
 	htmlmin = require('gulp-htmlmin');
+    stylus = require('gulp-stylus');
 
+//конвертирование файла .styl в css файл
+gulp.task('styl', function () {
+  return gulp.src('app/stylus/*.styl') // Берем источник
+    .pipe(sourcemaps.init())
+    .pipe(stylus()) // Преобразуем .styl в CSS
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
+});
 
 //конвертирование файла sass в css файл
 gulp.task('sass', function(){ // Создаем таск Sass
@@ -103,6 +112,7 @@ gulp.task('scripts', function() {
 //перезагрузка страницы в браузере
 gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
+        gulp.watch('app/stylus/*.styl', ['styl']); // Наблюдение за sass файлами в папке stylus
     gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
     gulp.watch('app/js/**/*.js', browserSync.reload);   // Наблюдение за JS файлами в папке js
     gulp.watch('app/fonts/**/*.*', browserSync.reload);   // Наблюдение за шрифтами в папке fonts
