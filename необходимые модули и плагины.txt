@@ -8,6 +8,7 @@ Tag
 Encoding Halper
 SFTP
 ColorPicker
+Stylus
 CSS3
 GutterColor
 Trailing Spaces
@@ -18,7 +19,6 @@ Placeholders
 DocBlockr
 Color Highlighter
 ImageMagick
-Stylus
 Gist
 Terminal
 
