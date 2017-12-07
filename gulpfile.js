@@ -19,11 +19,26 @@ var gulp      = require('gulp'), // Подключаем Gulp
     runTimestamp = Math.round(Date.now()/1000);
 	htmlmin = require('gulp-htmlmin');
     stylus = require('gulp-stylus');
+    nib = require('nib'); //подключаем библиотеку nib
+
+
+//таск для библиотеки nib
+/*gulp.task('nib', function () {
+  gulp.src('app/stylus/style.styl')
+    .pipe(plumber())
+    .pipe(stylus({use:[nib()]}))
+    .pipe(prefixer({
+      browsers: ['last 2 versions']
+    }))
+    .pipe(csscomb())
+    .pipe(gulp.dest('app/css/style.css'));
+});*/
 
 //конвертирование файла .styl в css файл
 gulp.task('styl', function () {
   return gulp.src('app/stylus/*.styl') // Берем источник
     .pipe(sourcemaps.init())
+    .pipe(stylus({use:[nib()]}))
     .pipe(stylus()) // Преобразуем .styl в CSS
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
