@@ -116,11 +116,10 @@ gulp.task('js', function() {
 //сборка и сжатие библиотек bower
 gulp.task('scripts', function() {
     return gulp.src([ // Берем все необходимые библиотеки
-        'bower_components/jquery/dist/jquery.min.js', // Берем jQuery
-        'bower_components/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
+        'bower_components/jquery.min.js', // Берем jQuery
+        'bower_components/jquery.js' // Берем Magnific Popup
         ])
-        .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
-        .pipe(uglify()) // Сжимаем JS файл
+        .pipe(concat('jquery.js')) // Собираем их в кучу в новом файле libs.min.js
         .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
 });
 
@@ -132,7 +131,7 @@ gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('app/js/**/*.js', browserSync.reload);   // Наблюдение за JS файлами в папке js
     gulp.watch('app/fonts/**/*.*', browserSync.reload);   // Наблюдение за шрифтами в папке fonts
     gulp.watch('app/css/**/*.css', browserSync.reload);   // Наблюдение за css файлами в папке css
-    gulp.watch('app/image/**/*.*', browserSync.reload);   // Наблюдение за изображениями в папке images
+    gulp.watch('app/img/**/*.*', browserSync.reload);   // Наблюдение за изображениями в папке images
 });
 
 //удаляем папку dist
@@ -156,19 +155,19 @@ gulp.task('clean', ['finish', 'app'], function() {
 });
 //сжатие картинок в папке image
 gulp.task('img', function() {
-    return gulp.src('app/image/**/*.*') // Берем все изображения из app/image
+    return gulp.src('app/img/**/*.*') // Берем все изображения из app/image
         .pipe(cache(imagemin({  // Сжимаем их с наилучшими настройками с учетом кеширования
             interlaced: true,
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         })))
-        .pipe(gulp.dest('dist/image')); // Выгружаем на продакшен
+        .pipe(gulp.dest('app/image')); // Выгружаем на продакшен
 });
 
 //проставляем префиксы к css3 свойствам
 gulp.task('prefix', function(){
-			gulp.src('app/css/style.css')
+			gulp.src('app/css/*.css')
 			.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
 			.pipe(gulp.dest('app/css/'));
 });
@@ -215,6 +214,9 @@ gulp.task('build', ['prefix', 'img', 'js'], function() {
 
     var buildFonts = gulp.src('app/fonts/**/*') // Переносим шрифты в продакшен
     .pipe(gulp.dest('dist/fonts'))
+
+    var buildJs = gulp.src('app/img/**/*') // Переносим скрипты в продакшен
+    .pipe(gulp.dest('dist/img'))
 
     var buildJs = gulp.src('app/js/**/*') // Переносим скрипты в продакшен
     .pipe(gulp.dest('dist/js'))
