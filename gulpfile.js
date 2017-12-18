@@ -20,6 +20,7 @@ var gulp      = require('gulp'), // Подключаем Gulp
 	htmlmin = require('gulp-htmlmin');
     stylus = require('gulp-stylus');
     nib = require('nib'); //подключаем библиотеку nib
+    csscomb = require('gulp-csscomb');
 
 
 //таск для библиотеки nib
@@ -33,6 +34,13 @@ var gulp      = require('gulp'), // Подключаем Gulp
     .pipe(csscomb())
     .pipe(gulp.dest('app/css/style.css'));
 });*/
+
+//облагородить структуру css
+gulp.task('css-styles', function() {
+  return gulp.src('app/css/*.css')
+    .pipe(csscomb())
+    .pipe(gulp.dest('app/css'));
+});
 
 //конвертирование файла .styl в css файл
 gulp.task('styl', function () {
