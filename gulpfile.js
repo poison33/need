@@ -20,7 +20,7 @@ var gulp      = require('gulp'), // Подключаем Gulp
 	htmlmin = require('gulp-htmlmin');
     stylus = require('gulp-stylus');
     nib = require('nib'); //подключаем библиотеку nib
-    csscomb = require('gulp-csscomb');
+    csscomb = require('gulp-csscomb'); //облагородить структуру css
 
 
 //таск для библиотеки nib
@@ -124,8 +124,8 @@ gulp.task('js', function() {
 //сборка и сжатие библиотек bower
 gulp.task('scripts', function() {
     return gulp.src([ // Берем все необходимые библиотеки
-        'bower_components/jquery.min.js', // Берем jQuery
-        'bower_components/jquery.js' // Берем Magnific Popup
+        'app/js/jquery-1.7.1.min.js', // Берем jQuery
+        'app/js/jquery-3.0.0.min.js' // Берем Magnific Popup
         ])
         .pipe(concat('jquery.js')) // Собираем их в кучу в новом файле libs.min.js
         .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
@@ -170,7 +170,7 @@ gulp.task('img', function() {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         })))
-        .pipe(gulp.dest('app/image')); // Выгружаем на продакшен
+        .pipe(gulp.dest('app/img')); // Выгружаем на продакшен
 });
 
 //проставляем префиксы к css3 свойствам
