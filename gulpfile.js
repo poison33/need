@@ -161,7 +161,7 @@ gulp.task('finish', function() {
 gulp.task('clean', ['finish', 'app'], function() {
     return del.sync('dist'); // Удаляем папку dist перед сборкой
 });
-//сжатие картинок в папке image
+//сжатие картинок в папке img
 gulp.task('img', function() {
     return gulp.src('app/img/**/*.*') // Берем все изображения из app/image
         .pipe(cache(imagemin({  // Сжимаем их с наилучшими настройками с учетом кеширования
@@ -215,7 +215,7 @@ gulp.task('end', ['zip'], function () {
 });
 
 //сборка на продакшен,(все готово)
-gulp.task('build', ['prefix', 'img', 'js'], function() {
+gulp.task('build', ['img'], function() {
 
     var buildCss = gulp.src('app/css/**/*') // Переносим CSS стили в продакшен
     .pipe(gulp.dest('dist/css'))
