@@ -134,7 +134,17 @@ gulp.task('scripts', function() {
 //перезагрузка страницы в браузере
 gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
-        gulp.watch('app/stylus/*.styl', ['styl']); // Наблюдение за sass файлами в папке stylus
+    gulp.watch('app/stylus/*.styl', ['styl']); // Наблюдение за sass файлами в папке stylus
+
+    var buildFonts = gulp.src('app/psd/psd-assets/*.png') // Переносим png файлы в папку img
+    .pipe(gulp.dest('app/img'))
+
+    var buildFonts = gulp.src('app/psd/psd-assets/*.jpg') // Переносим jpg файлы в папку img
+    .pipe(gulp.dest('app/img'))
+
+    var buildFonts = gulp.src('app/psd/psd-assets/*.gif') // Переносим gif файлы в папку img
+    .pipe(gulp.dest('app/img'))
+
     gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
     gulp.watch('app/js/**/*.js', browserSync.reload);   // Наблюдение за JS файлами в папке js
     gulp.watch('app/fonts/**/*.*', browserSync.reload);   // Наблюдение за шрифтами в папке fonts
@@ -163,7 +173,7 @@ gulp.task('clean', ['finish', 'app'], function() {
 });
 //сжатие картинок в папке img
 gulp.task('img', function() {
-    return gulp.src('app/img/**/*.*') // Берем все изображения из app/image
+    return gulp.src('app/img/**/*.*') // Берем все изображения из app/img
         .pipe(cache(imagemin({  // Сжимаем их с наилучшими настройками с учетом кеширования
             interlaced: true,
             progressive: true,
