@@ -131,7 +131,7 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
 });
 
-//сборка и сжатие библиотек bower
+//перемещение картинок из папки psd-assets
 gulp.task('psd', function() {
     var buildFonts = gulp.src('app/psd/psd-assets/*.png') // Переносим png файлы в папку img
     .pipe(gulp.dest('app/img'))
