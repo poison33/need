@@ -131,11 +131,8 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
 });
 
-//перезагрузка страницы в браузере
-gulp.task('watch', ['browser-sync'], function() {
-    gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
-    gulp.watch('app/stylus/*.styl', ['styl']); // Наблюдение за sass файлами в папке stylus
-
+//сборка и сжатие библиотек bower
+gulp.task('psd', function() {
     var buildFonts = gulp.src('app/psd/psd-assets/*.png') // Переносим png файлы в папку img
     .pipe(gulp.dest('app/img'))
 
@@ -144,7 +141,12 @@ gulp.task('watch', ['browser-sync'], function() {
 
     var buildFonts = gulp.src('app/psd/psd-assets/*.gif') // Переносим gif файлы в папку img
     .pipe(gulp.dest('app/img'))
+});
 
+//перезагрузка страницы в браузере
+gulp.task('watch', ['browser-sync', 'psd'], function() {
+    gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
+    gulp.watch('app/stylus/*.styl', ['styl']); // Наблюдение за sass файлами в папке stylus
     gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
     gulp.watch('app/js/**/*.js', browserSync.reload);   // Наблюдение за JS файлами в папке js
     gulp.watch('app/fonts/**/*.*', browserSync.reload);   // Наблюдение за шрифтами в папке fonts
