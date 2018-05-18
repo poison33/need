@@ -135,12 +135,6 @@ gulp.task('scripts', function() {
 gulp.task('psd', function() {
     var buildFonts = gulp.src('app/psd/psd-assets/*.png') // Переносим png файлы в папку img
     .pipe(gulp.dest('app/img'))
-
-    var buildFonts = gulp.src('app/psd/psd-assets/*.jpg') // Переносим jpg файлы в папку img
-    .pipe(gulp.dest('app/img'))
-
-    var buildFonts = gulp.src('app/psd/psd-assets/*.gif') // Переносим gif файлы в папку img
-    .pipe(gulp.dest('app/img'))
 });
 
 //перезагрузка страницы в браузере
@@ -182,7 +176,7 @@ gulp.task('img', function() {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         })))
-        .pipe(gulp.dest('app/img')); // Выгружаем на продакшен
+        .pipe(gulp.dest('app/image')); // Выгружаем на продакшен
 });
 
 //проставляем префиксы к css3 свойствам
@@ -227,7 +221,7 @@ gulp.task('end', ['zip'], function () {
 });
 
 //сборка на продакшен,(все готово)
-gulp.task('build', ['img'], function() {
+gulp.task('build', function() {
 
     var buildCss = gulp.src('app/css/**/*') // Переносим CSS стили в продакшен
     .pipe(gulp.dest('dist/css'))
@@ -235,7 +229,7 @@ gulp.task('build', ['img'], function() {
     var buildFonts = gulp.src('app/fonts/**/*') // Переносим шрифты в продакшен
     .pipe(gulp.dest('dist/fonts'))
 
-    var buildJs = gulp.src('app/img/**/*') // Переносим скрипты в продакшен
+    var buildJs = gulp.src('app/image/**/*') // Переносим скрипты в продакшен
     .pipe(gulp.dest('dist/img'))
 
     var buildJs = gulp.src('app/js/**/*') // Переносим скрипты в продакшен
