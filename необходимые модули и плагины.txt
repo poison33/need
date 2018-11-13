@@ -21,6 +21,7 @@ Color Highlighter
 ImageMagick
 Gist
 Terminal
+WordPress
 
 --Äëÿ Photoshop--
 GuideGuide
