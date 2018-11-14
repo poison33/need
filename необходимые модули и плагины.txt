@@ -22,6 +22,7 @@ ImageMagick
 Gist
 Terminal
 WordPress
+BracketHighlighter
 
 --Äëÿ Photoshop--
 GuideGuide
