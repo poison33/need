@@ -48,6 +48,7 @@ gulp.task('styl', function () {
     .pipe(sourcemaps.init())
     .pipe(stylus({use:[nib()]}))
     .pipe(stylus()) // Преобразуем .styl в CSS
+    .pipe(autoprefixer(['last 25 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
 });
